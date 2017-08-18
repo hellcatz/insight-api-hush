@@ -7,10 +7,10 @@ This is a backend-only service. If you're looking for the web frontend applicati
 ## Getting Started
 
 ```bashl
-npm install -g bitcore-node@latest
+npm install -g bitcore-node-hush
 bitcore-node create mynode
 cd mynode
-bitcore-node install git+https://github.com/MyHush/insight-api-hush
+bitcore-node install insight-api-hush
 bitcore-node start
 ```
 
@@ -18,47 +18,13 @@ The API endpoints will be available by default at: `http://localhost:3001/insigh
 
 ## Prerequisites
 
-- [Bitcore Node Hush 3.x](https://github.com/MyHush/bitcore-node-hush)
+- [Bitcore Node Hush](https://github.com/MyHush/bitcore-node-hush)
 
 **Note:** You can use an existing Hush data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `hush.conf`, as well as a few other additional fields.
 
-## Notes on Upgrading from v0.3
+## Notes 
 
-The unspent outputs format now has `satoshis` and `height`:
-```
-[
-  {
-    "address":"mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
-    "txid":"d5f8a96faccf79d4c087fa217627bb1120e83f8ea1a7d84b1de4277ead9bbac1",
-    "vout":0,
-    "scriptPubKey":"76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
-    "amount":0.000006,
-    "satoshis":600,
-    "confirmations":0,
-    "ts":1461349425
-  },
-  {
-    "address": "mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
-    "txid": "bc9df3b92120feaee4edc80963d8ed59d6a78ea0defef3ec3cb374f2015bfc6e",
-    "vout": 1,
-    "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
-    "amount": 0.12345678,
-    "satoshis: 12345678,
-    "confirmations": 1,
-    "height": 300001
-  }
-]
-```
-The `timestamp` property will only be set for unconfirmed transactions and `height` can be used for determining block order. The `confirmationsFromCache` is nolonger set or necessary, confirmation count is only cached for the time between blocks.
-
-There is a new `GET` endpoint or raw blocks at `/rawblock/<blockHash>`:
-
-Response format:
-```
-{
-  "rawblock": "blockhexstring..."
-}
-```
+The `timestamp` property will only be set for unconfirmed transactions and `height` can be used for determining block order. 
 
 There are a few changes to the `GET` endpoint for `/addr/[:address]`:
 
@@ -74,7 +40,6 @@ Some additional general notes:
 - `/tx` endpoint results will now include block height, and spentTx related fields will be set to `null` if unspent.
 - `/block` endpoint results does not include `confirmations` and will include `poolInfo`.
 
-## Notes on Upgrading from v0.2
 
 Some of the fields and methods are not supported:
 
@@ -109,7 +74,7 @@ To protect the server, insight-api has a built it query rate limiter. It can be 
     }
   }
 ```
-With all the configuration options available: https://github.com/bitpay/insight-api/blob/master/lib/ratelimiter.js#L10-17
+With all the configuration options available: https://github.com/MyHush/insight-api-hush/blob/master/lib/ratelimiter.js#L10-17
 
 Or disabled entirely with:
 ``` json
@@ -125,15 +90,15 @@ Or disabled entirely with:
 
 ### Block
 ```
-  /insight-api/block/[:hash]
-  /insight-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+  /api/block/[:hash]
+  /api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api/block-index/[:height]
-  /insight-api/block-index/0
+  /api/block-index/[:height]
+  /api/block-index/0
 ```
 This would return:
 ```
@@ -146,8 +111,8 @@ which is the hash of the Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api/rawblock/[:blockHash]
-  /insight-api/rawblock/[:blockHeight]
+  /api/rawblock/[:blockHash]
+  /api/rawblock/[:blockHeight]
 ```
 
 This would return:
@@ -161,7 +126,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api/blocks?limit=3&blockDate=2016-04-22
+  /api/blocks?limit=3&blockDate=2017-08-16
 ```
 
 Example response:
@@ -169,57 +134,74 @@ Example response:
 {
   "blocks": [
     {
-      "height": 408495,
-      "size": 989237,
-      "hash": "00000000000000000108a1f4d4db839702d72f16561b1154600a26c453ecb378",
-      "time": 1461360083,
-      "txlength": 1695,
+      "height": 153582,
+      "size": 6927,
+      "hash": "0000000b751413f51f80de311450d77e508af154d166265fd04717bb2e7d4e38",
+      "time": 1502927932,
+      "txlength": 4,
       "poolInfo": {
-        "poolName": "BTCC Pool",
-        "url": "https://pool.btcc.com/"
+      "poolName": "Mad Mining Club",
+      "url": "https://madmining.club/"
+      }
+      },
+      {
+      "height": 153581,
+      "size": 1623,
+      "hash": "00000003850c73d24e5eb805e5dc2f4533ea612bca6fe493a1b8197ba5a40bde",
+      "time": 1502927713,
+      "txlength": 1,
+      "poolInfo": {}
+      },
+      {
+      "height": 153580,
+      "size": 8886,
+      "hash": "000000001dbed0417a34ef103b09ea38d0256fabc3bedb80258e5913fe48c40a",
+      "time": 1502927707,
+      "txlength": 4,
+      "poolInfo": {}
       }
     }
   ],
-  "length": 1,
+  "length": 3,
   "pagination": {
-    "next": "2016-04-23",
-    "prev": "2016-04-21",
-    "currentTs": 1461369599,
-    "current": "2016-04-22",
-    "isToday": true,
-    "more": true,
-    "moreTs": 1461369600
+  "next": "2017-08-17",
+  "prev": "2017-08-15",
+  "currentTs": 1502927999,
+  "current": "2017-08-16",
+  "isToday": false,
+  "more": true,
+  "moreTs": 1502928000
   }
 }
 ```
 
 ### Transaction
 ```
-  /insight-api/tx/[:txid]
-  /insight-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
-  /insight-api/rawtx/[:rawid]
-  /insight-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /api/tx/[:txid]
+  /api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /api/rawtx/[:rawid]
+  /api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
 ### Address
 ```
-  /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /api/addr/[:addr][?noTxList=1][&from=&to=]
+  /api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+  /api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api/addr/[:addr]/balance
-  /insight-api/addr/[:addr]/totalReceived
-  /insight-api/addr/[:addr]/totalSent
-  /insight-api/addr/[:addr]/unconfirmedBalance
+  /api/addr/[:addr]/balance
+  /api/addr/[:addr]/totalReceived
+  /api/addr/[:addr]/totalSent
+  /api/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api/addr/[:addr]/utxo
+  /api/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -250,13 +232,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/utxo
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /api/addrs/[:addrs]/utxo
+  /api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
 ```
 
 POST method:
 ```
-  /insight-api/addrs/utxo
+  /api/addrs/utxo
 ```
 
 POST params:
@@ -266,25 +248,25 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 
 ### Transactions by Block
 ```
-  /insight-api/txs/?block=HASH
-  /insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+  /api/txs/?block=HASH
+  /api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
 ### Transactions by Address
 ```
-  /insight-api/txs/?address=ADDR
-  /insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+  /api/txs/?address=ADDR
+  /api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /api/addrs/[:addrs]/txs[?from=&to=]
+  /api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api/addrs/txs
+  /api/addrs/txs
 ```
 
 POST params:
@@ -330,7 +312,7 @@ Note: if pagination params are not specified, the result is an array of transact
 ### Transaction Broadcasting
 POST method:
 ```
-  /insight-api/tx/send
+  /api/tx/send
 ```
 POST params:
 ```
@@ -356,17 +338,17 @@ POST response:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api/sync
+  /api/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api/peer
+  /api/peer
 ```
 
 ### Status of the Hush Network
 ```
-  /insight-api/status?q=xxx
+  /api/status?q=xxx
 ```
 
 Where "xxx" can be:
@@ -379,7 +361,7 @@ Where "xxx" can be:
 
 ### Utility Methods
 ```
-  /insight-api/utils/estimatefee[?nbBlocks=2]
+  /api/utils/estimatefee[?nbBlocks=2]
 ```
 
 

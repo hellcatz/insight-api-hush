@@ -65,8 +65,8 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib-hush": "git+https://github.com/MyHush/bitcore-lib-hush",
-    "bitcore-message-hush": "git+https://github.com/MyHush/bitcore-message-hush",
+    "bitcore-lib-hush": "^0.13.19",
+    "bitcore-message-hush": "^1.0.2",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "lodash": "^2.4.1",
