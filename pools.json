@@ -50,11 +50,10 @@
     ]
   },
   {
-    "poolName": "Lucky Mining",
+    "poolName": "Lucky-Mining",
     "url": "https://hush.lucky-mining.com.ua/",
     "searchStrings": [
-      "https://hush.lucky-mining.com.ua/",
-      "Lucky Mining"
+      "lucky-mining.com.ua"
     ]
   },
 ]
