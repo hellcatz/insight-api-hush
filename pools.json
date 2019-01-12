@@ -14,7 +14,7 @@
     ]
   },
   {
-    "poolName": "miningspeed",
+    "poolName": "Miningspeed",
     "url": "http://pool.miningspeed.com",
     "searchStrings": [
       "miningspeed.com - http://pool.miningspeed.com"
@@ -54,6 +54,91 @@
     "url": "https://hush.lucky-mining.com.ua/",
     "searchStrings": [
       "lucky-mining.com.ua"
+    ]
+  },
+  {
+    "poolName": "Suprnova",
+    "url": "https://hush.suprnova.cc/",
+    "searchStrings": [
+      "Suprnova",
+      "suprnova",
+      "supr nova",
+      "https://hush.suprnova.cc/"
+    ]
+  },
+  {
+    "poolName": "HUSH Mining Pro",
+    "url": "https://hushmine.pro/",
+    "searchStrings": [
+      "hushmine",
+      "Mining Pro"
+    ]
+  },
+  {
+    "poolName": "Mine Zone",
+    "url": "https://minez.zone/",
+    "searchStrings": [
+      "minez.zone",
+      "Mine Zone"
+    ]
+  },
+  {
+    "poolName": "CoinBlockers",
+    "url": "https://hush.coinblockers.com/",
+    "searchStrings": [
+      "CoinBlockers",
+      "https://hush.coinblockers.com/"
+    ]
+  },
+  {
+    "poolName": "CloudPools",
+    "url": "http://hush.cloudpools.net/",
+    "searchStrings": [
+      "Cloudpools",
+      "http://hush.cloudpools.net/",
+      "cloudpools"
+    ]
+  },
+  {
+    "poolName": "Cloud Mining Pools",
+    "url": "http://miningpools.cloud/?pool=hush#/",
+    "searchStrings": [
+      "Cloud Mining Pools",
+      "http://miningpools.cloud/?pool=hush#/"
+    ]
+  },
+  {
+    "poolName": "Baikal Mine",
+    "url": "http://hush.baikalmine.ru/",
+    "searchStrings": [
+      "Baikal",
+      "BaikalMine",
+      "http://hush.baikalmine.ru/"
+    ]
+  },
+  {
+    "poolName": "AikaPool",
+    "url": "https://aikapool.com/hush/",
+    "searchStrings": [
+      "Aika Pool",
+      "AikaPool",
+      "https://aikapool.com/hush/"
+    ]
+  },
+  {
+    "poolName": "2Miners",
+    "url": "https://aikapool.com/hush/",
+    "searchStrings": [
+      "2miners",
+      "2 Miners",
+      "https://2miners.com/"
+    ]
+  },
+  {
+    "poolName": "CoinBlockers",
+    "url": "https://hush.coinblockers.com",
+    "searchStrings": [
+      "coinblockers.com - https://coinblockers.com"
     ]
   }
 ]
