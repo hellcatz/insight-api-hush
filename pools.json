@@ -21,9 +21,10 @@
     ]
   },
   {
-    "poolName": "Luckpool",
-    "url": "http://luckpool.org",
+    "poolName": "LuckPool",
+    "url": "http://luckpool.net",
     "searchStrings": [
+      "RDypuFB3ebsMPFdhDLSziMP3gzQAdy2C8U",
       "luckpool.org http://luckpool.org",
       "luckpool.org by hellcatz"
     ]
